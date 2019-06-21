@@ -40,15 +40,29 @@ class App extends React.Component {
 
   updateState = (object, position, value) => {
     let newState = { ...this.state };
-    newState[object][position] = parseInt(value);
 
-    //update length based on Y with pythagorean?
-    newState.line.length = parseInt(
-      Math.sqrt(
-        Math.pow(newState.circle1.x - newState.circle2.x, 2) +
-          Math.pow(newState.circle1.y - newState.circle2.y, 2)
-      )
-    );
+    if (object == "line") {
+      //push circle2
+      let difference = parseInt(value) - this.state.line.length;
+      let angle = Math.atan2(
+        this.state.circle2.y - this.state.circle1.y,
+        this.state.circle2.x - this.state.circle1.x
+      );
+      let height = Math.sin(angle) * difference;
+      let width = Math.cos(angle) * difference;
+      newState[object][position] = parseInt(value);
+      newState.circle2.x += parseInt(width);
+      newState.circle2.y += parseInt(height);
+    } else {
+      //update length based on Y with pythagorean?
+      newState[object][position] = parseInt(value);
+      newState.line.length = parseInt(
+        Math.sqrt(
+          Math.pow(newState.circle1.x - newState.circle2.x, 2) +
+            Math.pow(newState.circle1.y - newState.circle2.y, 2)
+        )
+      );
+    }
 
     this.setState(newState);
   };

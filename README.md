@@ -12,7 +12,7 @@ connect circles is an app that has 2 draggable cirles and a
 
 - [] line component
 
-  - [] input capabilities
+  - [x] input capabilities
   - [x] change length based on form
   - [x] rotate
 

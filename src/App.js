@@ -21,8 +21,7 @@ class App extends React.Component {
       mouse: {
         x: 0,
         y: 0
-      },
-      toggle: false
+      }
     },
     circle2: {
       x: 400,
@@ -30,11 +29,14 @@ class App extends React.Component {
       mouse: {
         x: 0,
         y: 0
-      },
-      toggle: false
+      }
     },
     line: {
       length: 566
+    },
+    toggle: {
+      on: false,
+      object: null
     }
   };
 
@@ -69,34 +71,21 @@ class App extends React.Component {
 
   updateMouse = (object, x, y) => {
     let newState = { ...this.state };
-    newState[object]["mouse"]["x"] = x;
-    newState[object]["mouse"]["y"] = y;
-    newState[object]["toggle"] = true;
-    console.log(newState);
+    newState[object].mouse.x = x;
+    newState[object].mouse.y = y;
+    newState.toggle.on = true;
+    newState.toggle.object = object;
     this.setState(newState);
   };
 
   handleMouseMove = event => {
-    if (this.state.circle1.toggle == true) {
-      // find offset and modify x y
-      let offsetX = event.nativeEvent.screenX - this.state.circle1.mouse.x;
-      let offsetY = event.nativeEvent.screenY - this.state.circle1.mouse.y;
+    if (this.state.toggle.on == true) {
+      const { object } = this.state.toggle;
+      let offsetX = event.nativeEvent.screenX - this.state[object].mouse.x;
+      let offsetY = event.nativeEvent.screenY - this.state[object].mouse.y;
       let newState = { ...this.state };
-      newState.circle1.x = offsetX;
-      newState.circle1.y = offsetY;
-      newState.line.length = parseInt(
-        Math.sqrt(
-          Math.pow(newState.circle1.x - newState.circle2.x, 2) +
-            Math.pow(newState.circle1.y - newState.circle2.y, 2)
-        )
-      );
-      this.setState(newState);
-    } else if (this.state.circle2.toggle == true) {
-      let offsetX = event.nativeEvent.screenX - this.state.circle2.mouse.x;
-      let offsetY = event.nativeEvent.screenY - this.state.circle2.mouse.y;
-      let newState = { ...this.state };
-      newState.circle2.x = offsetX;
-      newState.circle2.y = offsetY;
+      newState[object].x = offsetX;
+      newState[object].y = offsetY;
       newState.line.length = parseInt(
         Math.sqrt(
           Math.pow(newState.circle1.x - newState.circle2.x, 2) +
@@ -109,7 +98,8 @@ class App extends React.Component {
 
   toggle = object => {
     let newState = { ...this.state };
-    newState[object]["toggle"] = false;
+    newState.toggle.on = false;
+    newState.toggle[object] = object;
     this.setState(newState);
   };
 

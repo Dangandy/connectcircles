@@ -48,7 +48,6 @@ class Circle extends React.Component {
   };
 
   handleMouseUp = event => {
-    event.preventDefault();
     this.props.toggle(this.props.name);
   };
 

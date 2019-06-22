@@ -39,12 +39,7 @@ class Circle extends React.Component {
   };
 
   handleMouseDown = event => {
-    console.log(event.nativeEvent);
-    this.props.updateMouse(
-      this.props.name,
-      event.nativeEvent.screenX,
-      event.nativeEvent.screenY
-    );
+    this.props.updateMouse(this.props.name, event.screenX, event.screenY);
   };
 
   handleMouseUp = event => {

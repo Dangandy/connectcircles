@@ -43,7 +43,7 @@ class App extends React.Component {
   updateState = (object, position, value) => {
     let newState = { ...this.state };
 
-    if (object == "line") {
+    if (object === "line") {
       //push circle2
       let difference = parseInt(value) - this.state.line.length;
       let angle = Math.atan2(
@@ -79,13 +79,15 @@ class App extends React.Component {
   };
 
   handleMouseMove = event => {
-    if (this.state.toggle.on == true) {
-      const { object } = this.state.toggle;
-      let offsetX = event.nativeEvent.screenX - this.state[object].mouse.x;
-      let offsetY = event.nativeEvent.screenY - this.state[object].mouse.y;
-      let newState = { ...this.state };
-      newState[object].x = offsetX;
-      newState[object].y = offsetY;
+    let newState = { ...this.state };
+    if (newState.toggle.on === true) {
+      const { object } = newState.toggle;
+      let offsetX = event.screenX - newState[object].mouse.x;
+      let offsetY = event.screenY - newState[object].mouse.y;
+      newState[object].x += offsetX;
+      newState[object].y += offsetY;
+      newState[object].mouse.x = event.screenX;
+      newState[object].mouse.y = event.screenY;
       newState.line.length = parseInt(
         Math.sqrt(
           Math.pow(newState.circle1.x - newState.circle2.x, 2) +
@@ -99,7 +101,7 @@ class App extends React.Component {
   toggle = object => {
     let newState = { ...this.state };
     newState.toggle.on = false;
-    newState.toggle[object] = object;
+    newState.toggle.object = object;
     this.setState(newState);
   };
 

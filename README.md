@@ -18,4 +18,5 @@ connect circles is an app that has 2 draggable cirles and a
 
 ## Bugs:
 
-- [] state goes to 0,0 on click
+- [x] state goes to 0,0 on click
+  - state was not saving mouse clicks

@@ -82,10 +82,12 @@ class App extends React.Component {
     let newState = { ...this.state };
     if (newState.toggle.on === true) {
       const { object } = newState.toggle;
-      let offsetX = event.screenX - newState[object].mouse.x;
-      let offsetY = event.screenY - newState[object].mouse.y;
-      newState[object].x += offsetX;
-      newState[object].y += offsetY;
+      let offsetX =
+        event.screenX - newState[object].mouse.x + newState[object].x;
+      let offsetY =
+        event.screenY - newState[object].mouse.y + newState[object].y;
+      newState[object].x = offsetX;
+      newState[object].y = offsetY;
       newState[object].mouse.x = event.screenX;
       newState[object].mouse.y = event.screenY;
       newState.line.length = parseInt(

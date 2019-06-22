@@ -34,7 +34,7 @@ const Input = styled.input`
 const Span = styled.span``;
 
 class Circle extends React.Component {
-  handleChange = (position, event) => {
+  handleChange = position => event => {
     this.props.updateState(this.props.name, position, event.target.value);
   };
 
@@ -60,7 +60,7 @@ class Circle extends React.Component {
           <Input
             type="number"
             value={this.props.x}
-            onChange={this.handleChange.bind(this, "x")}
+            onChange={this.handleChange("x")}
           />
         </Span>
         <Span>
@@ -68,7 +68,7 @@ class Circle extends React.Component {
           <Input
             type="number"
             value={this.props.y}
-            onChange={this.handleChange.bind(this, "y")}
+            onChange={this.handleChange("y")}
           />
         </Span>
       </StyledCircle>

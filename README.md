@@ -1,16 +1,18 @@
 # Connect Circles
 
-connect circles is an app that has 2 draggable cirles and a
+connect circles is an app that has 2 draggable circles and a
+
+app can be viewed [here](https://frosty-varahamihira-73e4c9.netlify.com/)
 
 ## TODO:
 
-- [] circle component
+- [x] circle component
 
   - [x] input capabilities
   - [x] change position based on form
   - [x] draggable
 
-- [] line component
+- [x] line component
 
   - [x] input capabilities
   - [x] change length based on form
@@ -19,4 +21,4 @@ connect circles is an app that has 2 draggable cirles and a
 ## Bugs:
 
 - [x] state goes to 0,0 on click
-  - state was not saving mouse clicks
+  - state was not saving mouse location
